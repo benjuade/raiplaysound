@@ -1,6 +1,7 @@
 #!/bin/bash
 urls=("https://www.raiplaysound.it/programmi/codicebeta-ognicosaedigitale" 
      "https://www.raiplaysound.it/programmi/etabeta"
+     "https://www.raiplaysound.it/programmi/pilloledietabeta"
      "https://www.raiplaysound.it/programmi/radio3scienza")
 
 for url in "${urls[@]}"; do
