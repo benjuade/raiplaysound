@@ -1,5 +1,6 @@
 #!/bin/bash
-urls=("https://www.raiplaysound.it/programmi/codicebeta-ognicosaedigitale" 
+urls=("https://www.raiplaysound.it/programmi/america7"
+     "https://www.raiplaysound.it/programmi/codicebeta-ognicosaedigitale" 
      "https://www.raiplaysound.it/programmi/etabeta"
      "https://www.raiplaysound.it/programmi/padronidelmondo"
      "https://www.raiplaysound.it/programmi/pilloledietabeta"
