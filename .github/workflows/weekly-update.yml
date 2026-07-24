@@ -1,0 +1,62 @@
+name: Weekly Update
+
+on:
+  schedule:
+    - cron: '0 14 * * 1'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository (gh-pages-2 branch)
+        uses: actions/checkout@v7
+        with:
+          ref: gh-pages-2
+          fetch-depth: 1
+
+      - name: Set up Python
+        uses: actions/setup-python@v7
+        with:
+          python-version: '3.13'
+          cache: 'pip'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run update script
+        id: update
+        run: |
+          set +e
+          bash ./update.sh
+
+      - name: Check for changes
+        id: changes
+        run: |
+          if git diff --quiet && git diff --cached --quiet; then
+            echo "has_changes=false" >> "$GITHUB_OUTPUT"
+            echo "No changes detected"
+          else
+            echo "has_changes=true" >> "$GITHUB_OUTPUT"
+            echo "Changes detected in working directory"
+            git diff --stat
+          fi
+
+      - name: Configure Git user
+        if: steps.changes.outputs.has_changes == 'true'
+        run: |
+          set +e
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+
+      - name: Commit and push outputs
+        if: steps.changes.outputs.has_changes == 'true'
+        run: |
+          set +e
+          git add --all .
+          git commit -m "$(date "+%Y-%m-%d") update" --no-verify
+          git push
