@@ -5,7 +5,8 @@ urls=("https://www.raiplaysound.it/programmi/america7"
      "https://www.raiplaysound.it/programmi/padronidelmondo"
      "https://www.raiplaysound.it/programmi/pilloledietabeta"
      "https://www.raiplaysound.it/programmi/radio3scienza"
-     "https://www.raiplaysound.it/programmi/wikiradiolevocidellastoria")
+    "https://www.raiplaysound.it/programmi/sancho"
+	 "https://www.raiplaysound.it/programmi/wikiradiolevocidellastoria")
 
 for url in "${urls[@]}"; do
     raiplaysound single "$url" --folder programmi --dateok --skip "informazione notiziari radiocronache programmitv film fiction serietv"

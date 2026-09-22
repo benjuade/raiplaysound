@@ -3,6 +3,7 @@ name: Weekly Update
 on:
   schedule:
     - cron: '0 15 * * 1,5'
+      timezone: "Europe/Rome"
   workflow_dispatch:
 
 permissions:
